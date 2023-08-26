@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        // let message = "Hello World"
+
+        // function btnClick() {
+        //     message = "Hello React"
+        //     rootRender()
+        // }
+
+        // const root = ReactDOM.createRoot(document.querySelector("#root"))
+
+        // function rootRender() {
+        //     root.render((
+        //         <div>
+        //             <h2>{message}</h2>
+        //             <button onClick={btnClick}>修改文本</button>
+        //         </div>
+        //     ))
+        // }
+        // rootRender()
+        class App extends React.Component {
+            constructor(){
+                super()
+                console.log("1",this)
+                this.state = {
+                    msg:"world"
+                }
+            }
+            btnClick(){
+                console.log("2",this.state)
+                this.setState({
+                    msg:"react"
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>你好,{this.state.msg}</h2>
+                        <button onClick={this.btnClick.bind(this)}>按钮</button>
+                    </div>
+                )
+            }
+        }
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        root.render(<App/>)
+    </script>
+</body>
+
+</html>

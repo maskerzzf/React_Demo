@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+  <script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super()
+            this.state = {
+                msg:'hi',
+                names:['a','b','c'],
+                a:undefined,
+                b:null,
+                c:true,
+                person:{
+                    name:'jack',
+                    age:12
+                },
+                age:19,
+                movies: ["指环王", "泰坦尼克号", "哈利波特", "星际穿越"],
+            }
+            this.update = this.update.bind(this)
+        }
+        update(){
+            this.setState({
+                msg:"hello"
+            })
+        }
+
+        render(){
+            //解构
+            const {msg,person} = this.state
+            const {age} = this.state
+            const ele = this.state.movies.map(movie=><li key={movie}>{movie}</li>)
+            return ( 
+                <div>
+                    {/* 1.number,string,array 可以直接显示 */}
+                    <h2>{this.state.names}</h2>
+                    <h2>{msg}</h2>
+                    {/* 2.null,undefined,boolean ,内容为空*/}
+                    <h2>a:{this.state.a+''}</h2>
+                    <h2>b:{this.state.b+''}</h2>
+                    <h2>c:{this.state.c.toString()}</h2>
+                    {/* 3.object类型不能直接放进来*/}
+                    <h2>{Object.keys(person)}</h2>
+                    {/* 4.表达式*/}
+                    <h2>{1+2}</h2>
+                    <button onClick={this.update}>更新</button>
+                    {/* 5.三元运算符*/}
+                    <h2>{age>18?'成年人':'未成年人'}</h2>
+                    <ul>{ele}</ul>
+                    <h2>{this.getMovie()}</h2>
+                </div>
+            )
+        }
+        getMovie(){
+            const ele = this.state.movies.map(movie=><li key={movie}>{movie}</li>)
+            return ele
+        }
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+
+  </script>
+</body>
+</html>

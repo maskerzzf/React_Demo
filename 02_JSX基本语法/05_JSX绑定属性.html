@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    msg: '哈哈',
+                    title:'标题',
+                    src:'https://tse1-mm.cn.bing.net/th/id/OIP-C.XHlDtPLcsXQWRxBSC5PJGwHaGl?pid=ImgDet&rs=1',
+                    href:'http://www.baidu.com',
+                    isActive:true
+                }
+            }
+            render() {
+                const {title,src,href,isActive} = this.state
+                const className = `cls ${isActive?'active':''}`
+                const classList =['a','b']
+                if(isActive){
+                    classList.push('c')
+                }
+                return (
+                    <div>
+                        <h2 title={title}>h2</h2>    
+                        <img src={src}/>
+                        <a href={href}> 百度一下 </a>
+                        <h2 className={className}>类1</h2>
+                        <h2 className={classList.join(' ')}>类2</h2>
+                        <h2 style={{color:'red',fontSize:'30px'}}>ha</h2>
+                    </div>
+                )
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+</html>

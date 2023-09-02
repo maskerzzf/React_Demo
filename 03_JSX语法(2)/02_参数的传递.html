@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+    const  root =ReactDOM.createRoot(document.querySelector('#root'))
+    class App extends React.Component{
+        constructor(){
+            super()
+            this.state={
+                msg:'vue'
+            }
+        }
+        btnClick(event,name,age){
+            console.log('btn',event,this)
+            console.log('name,age',name,age)
+        }
+        render(){
+            const {msg} = this.state
+            return (
+                <div>
+                    {/*event参数*/}
+                    <button onClick={this.btnClick}>按钮1</button>
+                    <button onClick={(e)=>this.btnClick(e)}>按钮2</button>
+                    {/*外部参数*/}
+                    <button onClick={this.btnClick.bind(this,event,'zzf',13)}>按钮3</button>
+                    <button onClick={(event)=>this.btnClick(event,'zzf',19)}>按钮4</button>
+                </div>
+            )
+        }
+    }
+    
+    root.render(<App/>)
+
+    </script>
+</body>
+</html>

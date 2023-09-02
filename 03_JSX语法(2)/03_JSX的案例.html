@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    msg: 'vue',
+                    movies: ['星际穿越', '盗梦空间', '魔戒'],
+                    style: {
+                        color: 'red'
+                    },
+                    currentIndex: 0
+                }
+            }
+            btnClick(event, name, age) {
+                console.log('btn', event, this)
+                console.log('name,age', name, age)
+            }
+            chooseMovie(event,index) {
+                this.setState({
+                    currentIndex: index
+                }
+                )
+            }
+            render() {
+                const { movies, style, currentIndex } = this.state
+                return (
+                    <div>
+                        {movies.map((movie, index) => {
+                            return (<li onClick={() => {
+                                this.chooseMovie(event,index)
+                            }} 
+                            className={index == currentIndex ? 'isActive' : ''} 
+                            key={index}>
+                            {movie}
+                            </li>)
+                        })
+                        }
+                    </div>
+                )
+            }
+        }
+
+        root.render(<App />)
+    </script>
+</body>
+<style>
+    .isActive {
+        color: red;
+    }
+</style>
+
+</html>

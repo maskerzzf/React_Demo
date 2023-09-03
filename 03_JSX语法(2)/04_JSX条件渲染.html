@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    msg: "哈哈",
+                    isReady:true,
+                    friend:{
+                        name:'zzz',
+                        age:19
+                    }
+                }
+            }
+            render() {
+                const {isReady,friend} = this.state
+                // if(isReady){
+                //     return (<h1>你好</h1>)
+                // }else{
+                //     return (<h2>哈哈</h2>)
+                // }
+                //1.if 条件判断
+                let showEle = null
+                if(isReady){
+                    showEle = <h1>你好</h1>
+                }else{
+                    showEle = <h2>哈哈</h2>
+                }
+                return (
+                    <div>
+                        {showEle}
+                        {/*三元运算符判断*/}
+                        {isReady?<h1>你好</h1>:<h1>哈哈</h1>}    
+                        {/*&& 判断*/}
+                        <div>{friend && <h1>{friend.name+' '+friend.age}</h1>}</div>
+                    </div>
+                )
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+</html>
+</body>
+</html>

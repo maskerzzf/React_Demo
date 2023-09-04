@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    students:[
+                        {id:1,name:'zs',age:18},
+                        {id:2,name:'ls',age:19},
+                        {id:3,name:'ww',age:18},
+                        {id:4,name:'zs',age:17},
+                        {id:4,name:'zs',age:20},
+                        {id:5,name:'zs',age:23},
+                    ]
+                }
+            }
+            render() {
+                const {students} = this.state
+                return (
+                    <div>
+                        {students.filter(student=>student.age>18).slice(0,2).map((student,index)=>{
+                            return <li>{student.id},{student.name},{student.age}</li> 
+                        })}
+                    </div>
+                )
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+</html>

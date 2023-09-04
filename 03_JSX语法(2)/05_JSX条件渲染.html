@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    isShow:true,
+                    style:{
+                        display:'none'
+                    }
+                }
+            }
+            change(isShow){
+                this.setState({
+                    isShow:!isShow,
+                    style:{
+                        display:'block'
+                    }
+                })
+            }
+            render() {
+              const {isShow,style} = this.state  
+              return (
+                <div>
+                    <button onClick={()=>{this.change(isShow)}}>切换</button>
+                    {isShow?<h2>你好</h2>:null}
+                    {/*v-show*/}
+                    <h2 style={style}>世界</h2>
+                </div>
+              )
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-radius: 2px;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        background-color: skyblue;
+        z-index: 1;
+    }
+
+    .operation button,
+    label {
+        vertical-align: middle;
+    }
+
+    .delete {
+        border: 1px pink solid;
+        border-radius: 2px;
+        background-color: pink;
+    }
+
+    .add {
+        border: 1px skyblue solid;
+        border-radius: 2px;
+        background-color: skyblue;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
+    <script src="./format.js"></script>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    books: [
+                        {
+                            name: '算法导论',
+                            publishTime: '2002-9',
+                            price: 81.00,
+                            num: 0,
+                        },
+                        {
+                            name: 'JAVA核心技术',
+                            publishTime: '2005-9',
+                            price: 85.00,
+                            num: 0,
+                        },
+                        {
+                            name: '数据结构',
+                            publishTime: '2008-9',
+                            price: 89.00,
+                            num: 0,
+                        }
+                    ],
+                }
+            }
+            deleteBook(index) {
+                const newBooks = [...this.state.books]
+                newBooks.splice(index,1)
+                this.setState({
+                    books: newBooks
+                })
+            }
+            addBook() {
+                this.setState({
+                    books: [...this.state.books, {
+                        name: '',
+                        publishTime: '',
+                        price: '',
+                        num: 0,
+                    }]
+                })
+            }
+            increment(index) {
+                const newBooks = [...this.state.books]
+                newBooks[index].num+=1
+                this.setState({
+                    books: newBooks
+                    })
+                }       
+            decrement(index) {
+                const newBooks = [...this.state.books]
+                newBooks[index].num-=1;
+                this.setState({
+                    books: newBooks
+                })
+            }
+            render() {
+                const { books } = this.state
+                let totalPrice =0;
+                // books.forEach(book=>{
+                //     totalPrice+=book.num*book.price
+                // })
+                totalPrice =  books.reduce((previousValue,value)=>{
+                    return previousValue+value.price*value.num
+                },0)
+                const bookEle = books.map((book, index) => {
+                    return (
+                        <tbody key={index}>
+                            <tr>
+                                <td>{index}</td>
+                                <td>{book.name}</td>
+                                <td>{formatPrice(book.price)}</td>
+                                <td>{book.publishTime}</td>
+                                <td className="operation">
+                                    <button disabled={book.num<=0?true:false} onClick={() => { this.decrement(index) }}>-</button>
+                                    <label>{book.num}</label>
+                                    <button onClick={() => { this.increment(index) }}>+</button>
+                                </td>
+                                <td>
+                                    <button className="delete" onClick={() => { this.deleteBook(index) }}>删除</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    )
+                })
+                return (<div>
+                    <table border="1" cellSpacing="0" cellPadding="10">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>书籍名称</th>
+                                <th>出版日期</th>
+                                <th>价格</th>
+                                <th>购买数量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        {bookEle}
+                    </table>
+                    <h2>{books.length == 0?'购物车为空':''}</h2>
+                    总共：{formatPrice(totalPrice)}
+                </div>)
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

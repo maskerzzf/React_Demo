@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
+import App from './02_生命周期/App';
 import Hello from './components/Hello';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Hello/>
+    <App />
+    {/* <Hello/> */}
   </React.StrictMode>
 );
 

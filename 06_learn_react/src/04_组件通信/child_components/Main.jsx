@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MainBanner from './MainBanner'
 import MainProductList from './MainProductList'
+import axios from 'axios'
 
 export class Main extends Component {
   constructor(){
@@ -11,12 +12,16 @@ export class Main extends Component {
       productList:['推荐商品','热门商品','折扣商品']
     }
   }
+  componentDidMount(){
+    
+  }
   render() {
     const {banners,productList,title} = this.state
     return (
       <div className='main'>
         <div>main</div>
-        <MainBanner  banners={banners} title='歌曲'></MainBanner>
+        <MainBanner  banners={banners} title={title}></MainBanner>
+        <MainBanner/>
         <MainProductList  productList={productList}> </MainProductList>
       </div>
     )

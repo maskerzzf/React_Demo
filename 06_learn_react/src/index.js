@@ -6,7 +6,8 @@ import './index.css';
 // import Hello from './components/Hello';
 // import App from './03_组件嵌套/App';
 // import App from './04_组件通信/App';
-import App from './05_子传父/App';
+// import App from './05_子传父/App';
+import App from './06_组件通信案例/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

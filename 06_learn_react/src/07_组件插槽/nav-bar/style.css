@@ -1,0 +1,13 @@
+.nav-bar {
+    display: flex;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.nav-bar .left,.right {
+    width: 80px;
+    background-color: skyblue;
+}
+.nav-bar .center {
+    flex: 1;
+}

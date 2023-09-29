@@ -10,7 +10,8 @@ import './index.css';
 // import App from './06_组件通信案例/App';
 // import App from './07_组件插槽/App';
 // import App from './08_非父子组件通信/App';
-import App from './09_组件通信(event-bus)/App'
+// import App from './09_组件通信(event-bus)/App'
+import App from './10_setState的详细使用/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
